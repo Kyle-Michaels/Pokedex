@@ -35,5 +35,22 @@ let  pokemonList = [
         height: '1.7 m',
         type: ['fire', 'flying'],
     },
-    
+    {
+        id: 7,
+        name: 'Squirtle',
+        height: '0.5 m',
+        type: ['water'],
+    },
+    {
+        id: 8,
+        name: 'Wartortle',
+        height: '1 m',
+        type: ['water'],
+    },
+    {
+        id: 9,
+        name: 'Blastoise',
+        height: '1.6 m',
+        type: ['water'],
+    },
 ];
