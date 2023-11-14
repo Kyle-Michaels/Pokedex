@@ -17,4 +17,23 @@ let  pokemonList = [
         height: '2 m',
         type: ['grass', 'poison'],
     },
+    {
+        id: 4,
+        name: 'Charmander',
+        height: '0.6 m',
+        type: ['fire'],
+    },
+    {
+        id: 5,
+        name: 'Charmeleon',
+        height: '1.1 m',
+        type: ['fire'],
+    },
+    {
+        id: 6,
+        name: 'Charizard',
+        height: '1.7 m',
+        type: ['fire', 'flying'],
+    },
+    
 ];
