@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+div {
+    text-align: center;
+}
+
+.page-header {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.page-header__item {
+    flex: 0 1 200px;
+}
