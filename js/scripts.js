@@ -55,7 +55,7 @@ let  pokemonList = [
     },
 ];
 
-
+document.write('<div>');
 // Write every pokemon to DOM from array with height listed.
 for (let i = 0; i < pokemonList.length; i++) {
     document.write(pokemonList[i].name, ' (height: ', pokemonList[i].height, ' m)');
@@ -64,3 +64,4 @@ for (let i = 0; i < pokemonList.length; i++) {
     }
     document.write('<br>');
 }
+document.write('</div>');
