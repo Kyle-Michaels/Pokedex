@@ -72,9 +72,20 @@ let pokemonRepository = (function () {
         }
     }
 
+    function search(pokemon) {
+        let searched = pokemonList.filter((mon) => mon.name.toLowerCase().includes(pokemon.toLowerCase()));
+        return console.log(searched[0].id),
+        console.log(searched[0].name),
+        console.log(searched[0].height + ' m'),
+        console.log(searched[0].type),
+        alert('id: ' + searched[0].id + '\nname: ' + searched[0].name + '\nheight: ' + searched[0].height + '\ntype: ' + searched[0].type);
+        ;
+    }
+
     return {
         getAll: getAll,
         add: add,
+        search: search
     };
 })();
 
