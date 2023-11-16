@@ -61,7 +61,12 @@ let pokemonRepository = (function () {
     }
 
     function add(pokemon) {
-        pokemonList.push(pokemon);
+        if (typeof(pokemon) !== 'object') {
+            return  console.log('Incorrect data type.')
+        }
+        else {
+            pokemonList.push(pokemon);
+        }
     }
 
     return {
