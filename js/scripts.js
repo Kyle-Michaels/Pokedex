@@ -62,7 +62,10 @@ let pokemonRepository = (function () {
 
     function add(pokemon) {
         if (typeof(pokemon) !== 'object') {
-            return  console.log('Incorrect data type.')
+            return console.log('Incorrect data type.');
+        }
+        else if (Object.keys(pokemon).toString() !== Object.keys(pokemonList[0]).toString()) {
+            return console.log('Keys do not match');
         }
         else {
             pokemonList.push(pokemon);
@@ -71,7 +74,7 @@ let pokemonRepository = (function () {
 
     return {
         getAll: getAll,
-        add: add
+        add: add,
     };
 })();
 
