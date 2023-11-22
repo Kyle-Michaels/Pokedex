@@ -79,24 +79,40 @@ let pokemonRepository = (function () {
         console.log(searched[0].height + ' m'),
         console.log(searched[0].type),
         alert('id: ' + searched[0].id + '\nname: ' + searched[0].name + '\nheight: ' + searched[0].height + '\ntype: ' + searched[0].type);
-        ;
+    }
+
+    function addListItem(pokemon) {
+        let pokemonList = document.querySelector('.pokemon-list'); // Get .pokemon-list item from html
+        let listPokemon = document.createElement('li'); // create list item element
+        let  button = document.createElement('button'); // create button element
+        button.innerText = pokemon.name; // text in button is pokemon name passend into function
+        button.classList.add('button-class') // add styling to button
+        listPokemon.appendChild(button); // add button to newly created list item element
+        pokemonList.appendChild(listPokemon); // add list item with button to html
+        addListener(button, pokemon);
+    }
+
+    function showDetails(pokemon) {
+        return console.log('Id: ' + pokemon.id + '\nName: ' + pokemon.name + '\nHeight: ' + pokemon.height + '\nType: ' + pokemon.type)
+    }
+
+    function addListener(button, pokemon) {
+        button.addEventListener('click', function () {
+            showDetails(pokemon);
+        })
     }
 
     return {
         getAll: getAll,
         add: add,
-        search: search
+        search: search,
+        addListItem: addListItem,
+        showDetails: showDetails,
+        addListener: addListener,
     };
 })();
 
-document.write('<div>');
-let pokemonList = pokemonRepository.getAll();
-// Write every pokemon to DOM from array with height listed.
-pokemonList.forEach(function(pokemon) {
-    document.write(pokemon.name, ' (height: ' + pokemon.height + ' m)');
-    if (pokemon.height > 1.8) {
-        document.write(' -Wow that\'s a big guy!');
-    }
-    document.write('<br>');
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
 });
-document.write('</div>');
