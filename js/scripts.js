@@ -7,21 +7,17 @@ let pokemonRepository = (function () {
     }
 
     function add(pokemon) {
-        if (typeof(pokemon) !== 'object') {
-            return console.log('Incorrect data type.');
-        }
-        else if (Object.keys(pokemon).toString() !== Object.keys(pokemonList[0]).toString()) {
-            return console.log('Keys do not match');
+        if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
+            pokemonList.push(pokemon);
         }
         else {
-            pokemonList.push(pokemon);
+            console.log('pokemon is not correct');
         }
     }
 
     function search(pokemon) {
         let searched = pokemonList.filter((mon) => mon.name.toLowerCase().includes(pokemon.toLowerCase()));
-        return console.log(searched[0].id),
-        console.log(searched[0].name),
+        return console.log(searched[0].name),
         console.log(searched[0].height + ' m'),
         console.log(searched[0].type),
         alert('id: ' + searched[0].id + '\nname: ' + searched[0].name + '\nheight: ' + searched[0].height + '\ntype: ' + searched[0].type);
@@ -34,12 +30,14 @@ let pokemonRepository = (function () {
         button.innerText = pokemon.name; // text in button is pokemon name passend into function
         button.classList.add('button-class') // add styling to button
         listItemPokemon.appendChild(button); // add button to newly created list item element
-        pokemonList.appendChild(listPokemon); // add list item with button to html
+        pokemonList.appendChild(listItemPokemon); // add list item with button to html
         addListener(button, pokemon);
     }
 
     function showDetails(pokemon) {
-        return console.log('Id: ' + pokemon.id + '\nName: ' + pokemon.name + '\nHeight: ' + pokemon.height + '\nType: ' + pokemon.type)
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        });
     }
 
     function addListener(button, pokemon) {
@@ -58,10 +56,23 @@ let pokemonRepository = (function () {
                     detailsUrl: item.url
                 };
                 add(pokemon);
-            })
+            });
         }).catch(function (e) {
             console.error(e);
         })
+    }
+
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function  (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
     }
 
     return {
@@ -72,11 +83,12 @@ let pokemonRepository = (function () {
         showDetails: showDetails,
         addListener: addListener,
         loadList: loadList,
+        loadDetails: loadDetails,
     };
 })();
 
 
-pokemonRepository.loadList().then(funciton () {
+pokemonRepository.loadList().then(function () {
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
