@@ -83,11 +83,11 @@ let pokemonRepository = (function () {
 
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list'); // Get .pokemon-list item from html
-        let listPokemon = document.createElement('li'); // create list item element
+        let listItemPokemon = document.createElement('li'); // create list item element
         let  button = document.createElement('button'); // create button element
         button.innerText = pokemon.name; // text in button is pokemon name passend into function
         button.classList.add('button-class') // add styling to button
-        listPokemon.appendChild(button); // add button to newly created list item element
+        listItemPokemon.appendChild(button); // add button to newly created list item element
         pokemonList.appendChild(listPokemon); // add list item with button to html
         addListener(button, pokemon);
     }
