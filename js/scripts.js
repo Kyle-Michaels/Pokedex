@@ -26,9 +26,16 @@ let pokemonRepository = (function () {
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');          // Get .pokemon-list item from html
         let listItemPokemon = document.createElement('li');                 // create list item element
+        listItemPokemon.classList.add('col-');
+        listItemPokemon.classList.add('list-group-item');
+        listItemPokemon.classList.add('list-group-item-action')
+
         let  button = document.createElement('button');                     // create button element
         button.innerText = pokemon.name;                                    // text in button is pokemon name passend into function
-        button.classList.add('button-class');                               // add styling to button
+        button.classList.add('btn');                               // add styling to button
+        button.classList.add('btn-block');
+        button.classList.add('btn-primary');
+
         listItemPokemon.appendChild(button);                                // add button to newly created list item element
         pokemonList.appendChild(listItemPokemon);                           // add list item with button to html
         addListener(button, pokemon);
@@ -56,7 +63,7 @@ let pokemonRepository = (function () {
             hideLoadingMessage();
             json.results.forEach(function (item) {          // for each item in object insert into pokemon object
                 let pokemon = {
-                    name: item.name,
+                    name: item.name.toUpperCase(),
                     detailsUrl: item.url
                 };
                 add(pokemon);                               // add to pokemon list
