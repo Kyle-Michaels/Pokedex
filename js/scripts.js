@@ -1,6 +1,6 @@
 let pokemonRepository = (function () {
     let  pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
     function getAll() {
         return pokemonList;
@@ -28,7 +28,7 @@ let pokemonRepository = (function () {
         let listItemPokemon = document.createElement('li');                 // create list item element
         let  button = document.createElement('button');                     // create button element
         button.innerText = pokemon.name;                                    // text in button is pokemon name passend into function
-        button.classList.add('button-class')                                // add styling to button
+        button.classList.add('button-class');                               // add styling to button
         listItemPokemon.appendChild(button);                                // add button to newly created list item element
         pokemonList.appendChild(listItemPokemon);                           // add list item with button to html
         addListener(button, pokemon);
