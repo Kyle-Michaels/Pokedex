@@ -36,7 +36,13 @@ let pokemonRepository = (function () {
         button.classList.add('btn-block');
         button.classList.add('btn-primary');
 
+        let thumbnailUrl = document.createElement('img');
+        let details = loadDetails(pokemon)
+        thumbnailUrl.src = details.imageUrl;
+        console.log(details.imageUrl)
+
         listItemPokemon.appendChild(button);                                // add button to newly created list item element
+        listItemPokemon.appendChild(thumbnailUrl);
         pokemonList.appendChild(listItemPokemon);                           // add list item with button to html
         addListener(button, pokemon);
     }
