@@ -31,6 +31,10 @@ ul > li {
     justify-content: space-between;
 }
 
+.list-group {
+    flex-direction: row;
+}
+
 .list-group-item-action {
     width: 200px;
     padding: 5px 5px 5px 5px;
