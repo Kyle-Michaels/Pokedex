@@ -36,13 +36,13 @@ let pokemonRepository = (function () {
         button.classList.add('btn-block');
         button.classList.add('btn-primary');
 
-        let thumbnailUrl = document.createElement('img');
-        let details = loadDetails(pokemon)
-        thumbnailUrl.src = details.imageUrl;
-        console.log(details.imageUrl)
+        // let thumbnailUrl = document.createElement('img');
+        // let details = loadDetails(pokemon)
+        // thumbnailUrl.src = details.imageUrl;
+        // console.log(details.imageUrl)
 
         listItemPokemon.appendChild(button);                                // add button to newly created list item element
-        listItemPokemon.appendChild(thumbnailUrl);
+        // listItemPokemon.appendChild(thumbnailUrl);
         pokemonList.appendChild(listItemPokemon);                           // add list item with button to html
         addListener(button, pokemon);
     }
@@ -62,11 +62,11 @@ let pokemonRepository = (function () {
     }
 
     function loadList() {
-        showLoadingMessage();
+        //showLoadingMessage();
         return fetch(apiUrl).then(function (response) {     // get json key from api
             return response.json();                         // turn key into object
         }).then(function (json) {                           // if successful plug object into following function
-            hideLoadingMessage();
+            //hideLoadingMessage();
             json.results.forEach(function (item) {          // for each item in object insert into pokemon object
                 let pokemon = {
                     name: item.name.toUpperCase(),
@@ -75,34 +75,34 @@ let pokemonRepository = (function () {
                 add(pokemon);                               // add to pokemon list
             });
         }).catch(function (e) {                             // if fails throw error
-            hideLoadingMessage();
+            //hideLoadingMessage();
             console.error(e);
         })
     }
 
     function loadDetails(item) {
-        showLoadingMessage();
+        //showLoadingMessage();
         let url = item.detailsUrl;
         return fetch(url).then(function  (response) {       // promise get url json key from loaded list
             return response.json();                         // return interpreted json key
         }).then(function (details) {                        // if successful plug in json object into following function
-            hideLoadingMessage();
+            //hideLoadingMessage();
             item.imageUrl = details.sprites.front_default;  // create variables for each key
             item.height = details.height;
             item.types = details.types;
         }).catch(function (e) {                             // if fails throw error
-            hideLoadingMessage();
+            //hideLoadingMessage();
             console.error(e);
         });
     }
 
-    function showLoadingMessage() {
-        console.log('Loading');
-    }
+    // function showLoadingMessage() {
+    //     console.log('Loading');
+    // }
 
-    function hideLoadingMessage() {
-        console.log('Loading complete')
-    }
+    // function hideLoadingMessage() {
+    //     console.log('Loading complete')
+    // }
 
     let modalContainer = document.querySelector('#modal-container');        // get modal container div
 
@@ -163,8 +163,8 @@ let pokemonRepository = (function () {
         addListener: addListener,
         loadList: loadList,
         loadDetails: loadDetails,
-        showLoadingMessage: showLoadingMessage,
-        hideLoadingMessage: hideLoadingMessage,
+        //showLoadingMessage: showLoadingMessage,
+        //hideLoadingMessage: hideLoadingMessage,
         showModal: showModal,
         hideModal: hideModal,
     };
