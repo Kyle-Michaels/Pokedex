@@ -39,7 +39,7 @@ let pokemonRepository = (function () {
         button.setAttribute('data-target', '#modal');
 
         let thumbnail = document.createElement('img');
-        loadDetails(pokemon).then((response) => thumbnail.src = pokemon.thumbnailUrl);
+        loadDetails(pokemon).then(() => thumbnail.src = pokemon.thumbnailUrl);
         thumbnail.classList.add('thumbnail');
 
         listItemPokemon.appendChild(button);                                // add button to newly created list item element
@@ -92,29 +92,28 @@ let pokemonRepository = (function () {
     }
 
     function showModal(pokemonDetails) {
-        let modalBody = $(".modal-body");
-        let modalTitle = $(".modal-title");
-        let modalHeader = $(".modal-header");
+        let modalBody = $('.modal-body');
+        let modalTitle = $('.modal-title');
 
         modalTitle.empty();
         modalBody.empty();
 
-        let name = $("<h1>" + pokemonDetails.name + "</h1>");
+        let name = $('<h1>' + pokemonDetails.name + '</h1>');
 
         let imageFront = $('<img class="modal-img" style="width:50%">');
-        imageFront.attr("src", pokemonDetails.imageUrlFront);
+        imageFront.attr('src', pokemonDetails.imageUrlFront);
 
         let imageBack = $('<img class="modal-img" style="width:50%">');
-        imageBack.attr("src", pokemonDetails.imageUrlBack);
+        imageBack.attr('src', pokemonDetails.imageUrlBack);
 
-        let height = $("<p>" + "Height: " + (pokemonDetails.height * 0.1).toFixed(1) + "m" + "</p>");
+        let height = $('<p>' + 'Height: ' + (pokemonDetails.height * 0.1).toFixed(1) + 'm' + '</p>');
 
         var types;
         if (pokemonDetails.types.length > 1) {
-            types = $("<p>" + "Types: " + pokemonDetails.types[0].type.name + ", " + pokemonDetails.types[1].type.name + "</p>");
+            types = $('<p>' + 'Types: ' + pokemonDetails.types[0].type.name + ', ' + pokemonDetails.types[1].type.name + '</p>');
         }
         else {
-            types = $("<p>" + "Type: " + pokemonDetails.types[0].type.name + "</p>");
+            types = $('<p>' + 'Type: ' + pokemonDetails.types[0].type.name + '</p>');
         }
 
         modalTitle.append(name);
