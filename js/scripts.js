@@ -15,13 +15,32 @@ let pokemonRepository = (function () {
         }
     }
 
-    function search(pokemon) {
-        let searched = pokemonList.filter((mon) => mon.name.toLowerCase().includes(pokemon.toLowerCase()));
-        return console.log(searched[0].name),
-        console.log(searched[0].height + ' dm'),
-        console.log(searched[0].type),
-        alert('id: ' + searched[0].id + '\nname: ' + searched[0].name + '\nheight: ' + searched[0].height + '\ntype: ' + searched[0].type);
+
+
+    function search(searchItem) {
+        let searched = pokemonList.filter((mon) => mon.name.toLowerCase().includes(searchItem.toLowerCase()));
+        if (searched.length < 1) {
+            return alert('No results found');
+        }
+        else {
+            let id = searched[0].name;
+            let button = document.querySelector('#' + id);
+            button.click();
+        }
     }
+
+    let form = document.querySelector('.searchForm');
+    let input = document.querySelector('.searchInput');
+    let btn = document.querySelector('.searchButton');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        search(input.value);
+    });
+
+    btn.addEventListener('click', (e) => {
+        search(input.value);
+    });
 
     function addListItem(pokemon) {
         let pokemonList = document.querySelector('.pokemon-list');          // Get .pokemon-list item from html
@@ -37,6 +56,7 @@ let pokemonRepository = (function () {
         button.classList.add('btn-primary');
         button.setAttribute('data-toggle', 'modal');
         button.setAttribute('data-target', '#modal');
+        button.setAttribute('id', pokemon.name);
 
         let thumbnail = document.createElement('img');
         loadDetails(pokemon).then(() => thumbnail.src = pokemon.thumbnailUrl);
