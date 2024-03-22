@@ -1,3 +1,4 @@
+![preview](https://github.com/Kyle-Michaels/Pokedex/blob/main/pokedex.jpg?raw=true)
 <h1>Pokedex App</h1>
 <p>
   This pokedex app displays a list of pokemon that when clicked will bring up a modal displaying more information about the selected pokemon.
